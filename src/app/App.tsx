@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { BiologicalPulse } from './components/BiologicalPulse';
 import { HomePage } from './components/HomePage';
@@ -7,10 +7,10 @@ import { GuidesPage } from './components/GuidesPage';
 import { PatientProfile } from './components/PatientProfile';
 import { HealthInsights } from './components/HealthInsights';
 import { ClinicianDashboard } from './components/ClinicianDashboard';
-import { Activity, Home, TrendingUp, BookOpen, User, X, Settings, ChevronRight, CheckSquare, Stethoscope, ArrowLeft } from 'lucide-react';
+import { Activity, Home, TrendingUp, BookOpen, User, X, Settings, ChevronRight, CheckSquare, Stethoscope, ArrowLeft, ChevronDown } from 'lucide-react';
 
 type AppMode = 'patient' | 'clinician';
-type TabId = 'overview' | 'trends' | 'actions';
+type Language = 'en' | 'fi';
 
 const tabs: { id: TabId; label: string; icon: React.ElementType }[] = [
   { id: 'overview', label: 'Overview', icon: Home },
@@ -22,6 +22,20 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<TabId>('overview');
   const [showProfile, setShowProfile] = useState(false);
   const [mode, setMode] = useState<AppMode>('clinician');
+  const [language, setLanguage] = useState<Language>('en');
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowLanguageDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // ─── Clinician View ───
   if (mode === 'clinician') {
@@ -40,12 +54,49 @@ export default function App() {
                   <span className="text-[0.6rem] text-indigo-500 ml-1.5 px-1.5 py-0.5 rounded-full bg-indigo-50">Clinician</span>
                 </div>
               </div>
-              <button
-                onClick={() => setMode('patient')}
-                className="text-[0.7rem] text-slate-500 hover:text-slate-700 flex items-center gap-1 transition-colors"
-              >
-                <User className="w-3.5 h-3.5" /> Patient View
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setMode('patient')}
+                  className="text-[0.7rem] text-slate-500 hover:text-slate-700 flex items-center gap-1 transition-colors"
+                >
+                  <User className="w-3.5 h-3.5" /> Patient View
+                </button>
+                <div className="relative" ref={dropdownRef}>
+                  <button
+                    onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
+                    className="w-20 h-8 bg-white/60 hover:bg-white/80 rounded-lg flex items-center justify-center gap-1 transition-colors text-xs"
+                  >
+                    <span>{language === 'en' ? '🇬🇧 EN' : '🇫🇮 FI'}</span>
+                    <ChevronDown className="w-3 h-3" />
+                  </button>
+                  {showLanguageDropdown && (
+                    <div className="absolute top-full mt-1 right-0 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200 py-1 z-50 min-w-[80px]">
+                      <button
+                        onClick={() => {
+                          setLanguage('en');
+                          setShowLanguageDropdown(false);
+                        }}
+                        className={`w-full px-3 py-2 text-left text-xs hover:bg-gray-50 flex items-center gap-2 ${
+                          language === 'en' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                        }`}
+                      >
+                        🇬🇧 EN
+                      </button>
+                      <button
+                        onClick={() => {
+                          setLanguage('fi');
+                          setShowLanguageDropdown(false);
+                        }}
+                        className={`w-full px-3 py-2 text-left text-xs hover:bg-gray-50 flex items-center gap-2 ${
+                          language === 'fi' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                        }`}
+                      >
+                        🇫🇮 FI
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </header>
           <main className="flex-1 overflow-y-auto pb-8">
@@ -84,6 +135,41 @@ export default function App() {
               >
                 <Stethoscope className="w-3 h-3" /> Clinician
               </button>
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
+                  className="w-20 h-8 bg-white/60 hover:bg-white/80 rounded-lg flex items-center justify-center gap-1 transition-colors text-xs"
+                >
+                  <span>{language === 'en' ? '🇬🇧 EN' : '🇫🇮 FI'}</span>
+                  <ChevronDown className="w-3 h-3" />
+                </button>
+                {showLanguageDropdown && (
+                  <div className="absolute top-full mt-1 right-0 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200 py-1 z-50 min-w-[80px]">
+                    <button
+                      onClick={() => {
+                        setLanguage('en');
+                        setShowLanguageDropdown(false);
+                      }}
+                      className={`w-full px-3 py-2 text-left text-xs hover:bg-gray-50 flex items-center gap-2 ${
+                        language === 'en' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                      }`}
+                    >
+                      🇬🇧 EN
+                    </button>
+                    <button
+                      onClick={() => {
+                        setLanguage('fi');
+                        setShowLanguageDropdown(false);
+                      }}
+                      className={`w-full px-3 py-2 text-left text-xs hover:bg-gray-50 flex items-center gap-2 ${
+                        language === 'fi' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                      }`}
+                    >
+                      🇫🇮 FI
+                    </button>
+                  </div>
+                )}
+              </div>
               <button
                 onClick={() => setShowProfile(true)}
                 className="w-9 h-9 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-full flex items-center justify-center hover:from-teal-600 hover:to-cyan-700 transition-all shadow-sm"
