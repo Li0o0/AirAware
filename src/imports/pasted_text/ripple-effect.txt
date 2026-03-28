@@ -1,0 +1,142 @@
+int gridSize = 200;
+float tileSize;
+
+// All active ripples
+ArrayList<Ripple> ripples = new ArrayList<Ripple>();
+
+// Pending ripples to be spawned with a staggered delay after a click
+ArrayList<PendingRipple> pendingRipples = new ArrayList<PendingRipple>();
+
+// Number of ripples spawned per click, and frame delay between each
+int ripplesPerClick = 2;
+int spawnInterval = 15; // frames between each successive ripple
+
+void setup() {
+  size(600, 600);
+  tileSize = width / float(gridSize);
+  rectMode(CENTER);
+}
+
+void draw() {
+  background(48, 126, 242);
+  stroke(255);
+  noFill();
+
+  // Check pending ripples and spawn them when their delay is reached
+  for (int i = pendingRipples.size() - 1; i >= 0; i--) {
+    PendingRipple p = pendingRipples.get(i);
+    if (frameCount >= p.spawnFrame) {
+      ripples.add(new Ripple(p.cx, p.cy));
+      pendingRipples.remove(i);
+    }
+  }
+
+  // Update all active ripples, remove dead ones
+  for (int i = ripples.size() - 1; i >= 0; i--) {
+    Ripple r = ripples.get(i);
+    r.update();
+    if (r.isDead()) {
+      ripples.remove(i);
+    }
+  }
+
+  for (int x = 0; x < width + tileSize; x += tileSize) {
+    for (int y = 0; y < height + tileSize; y += tileSize) {
+
+      float totalRipple = 0;
+      float totalInfluence = 0;
+
+      // Accumulate influence from all active ripples
+      for (Ripple r : ripples) {
+        float d = dist(x, y, r.cx, r.cy);
+
+        // Only tiles near the expanding wave front are affected
+        float waveFront = r.age * r.speed;
+        float waveWidth = 50;
+
+        float distToFront = abs(d - waveFront);
+
+        if (distToFront < waveWidth) {
+          // Envelope peaks at the wave front and falls off on both sides
+          float envelope = 1.0 - (distToFront / waveWidth);
+          envelope = envelope * envelope;
+
+          float lifeFade = r.getLifeFade();
+
+          float rippleValue = sin(d * 0.1 - r.age * 0.05) * envelope * lifeFade;
+          totalRipple += rippleValue;
+          totalInfluence += envelope * lifeFade;
+        }
+      }
+
+      float angle = noise(x * 0.01, y * 0.01, frameCount * 0.005) * TWO_PI;
+
+      float brightness;
+      if (totalInfluence > 0) {
+        angle += totalRipple;
+        brightness = map(totalRipple / max(totalInfluence, 0.001), -1, 1, 0, 255);
+      } else {
+        // Tiles at rest are nearly invisible
+        brightness = 30;
+      }
+
+      pushMatrix();
+      translate(x + tileSize / 2, y + tileSize / 2);
+      rotate(angle);
+      fill(66, 135, 245, brightness);
+
+      float rectLength = tileSize * 0.5;
+      rect(0, 0, rectLength, rectLength);
+      popMatrix();
+    }
+  }
+}
+
+void mousePressed() {
+  // Schedule multiple ripples at the click position, each delayed by spawnInterval frames
+  for (int i = 0; i < ripplesPerClick; i++) {
+    pendingRipples.add(new PendingRipple(mouseX, mouseY, frameCount + i * spawnInterval));
+  }
+}
+
+// Holds a ripple that hasn't been spawned yet
+class PendingRipple {
+  float cx, cy;
+  int spawnFrame;
+
+  PendingRipple(float x, float y, int frame) {
+    cx = x;
+    cy = y;
+    spawnFrame = frame;
+  }
+}
+
+class Ripple {
+  float cx, cy;   // Origin of the ripple
+  float age;      // Age in frames
+  float maxAge;   // Lifespan in frames
+  float speed;    // Expansion speed in pixels per frame
+
+  Ripple(float x, float y) {
+    cx = x;
+    cy = y;
+    age = 0;
+    maxAge = 180;
+    speed = 5;
+  }
+
+  void update() {
+    age++;
+  }
+
+  // Fade multiplier: eases in over first 20 frames, then fades out toward maxAge
+  float getLifeFade() {
+    float fadeIn  = min(age / 20.0, 1.0);
+    float fadeOut = 1.0 - (age / maxAge);
+    return fadeIn * fadeOut;
+  }
+
+  boolean isDead() {
+    return age >= maxAge;
+  }
+}
