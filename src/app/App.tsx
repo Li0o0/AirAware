@@ -46,22 +46,23 @@ export default function App() {
         <BiologicalPulse />
         <div className="relative z-10 flex flex-col min-h-screen">
           <header style={{ background: 'rgba(255,255,255,0.6)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.5)' }} className="sticky top-0 z-40">
-            <div className="max-w-lg mx-auto px-4 flex items-center justify-between h-14">
-              <div className="flex items-center gap-0.5">
+            <div className="max-w-lg mx-auto px-2 sm:px-4 flex flex-wrap items-center justify-between h-auto min-h-[3.5rem]">
+              <div className="flex items-center gap-0.5 min-w-0 flex-shrink-0">
                 <img src={logo} alt="AirAware Logo" className="w-8 h-8 object-contain" />
-                <img src={logoText} alt="AirAware" className="h-6 object-contain" />
+                <img src={logoText} alt="AirAware" className="h-6 object-contain max-w-[110px] sm:max-w-none" />
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 flex-wrap justify-end flex-1 min-w-0">
                 <button
                   onClick={() => setMode('patient')}
-                  className="text-[0.7rem] text-slate-500 hover:text-slate-700 flex items-center gap-1 transition-colors"
+                  className="text-[0.7rem] text-slate-500 hover:text-slate-700 flex flex-col items-center gap-0.5 transition-colors whitespace-nowrap px-1"
                 >
-                  <User className="w-3.5 h-3.5" /> Patient View
+                  <div className="flex items-center gap-1"><User className="w-3.5 h-3.5" /></div>
+                  <span className="text-[0.65rem] leading-tight">Patient View</span>
                 </button>
                 <div className="relative" ref={dropdownRef}>
                   <button
                     onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-                    className="w-20 h-8 bg-white/60 hover:bg-white/80 rounded-lg flex items-center justify-center gap-1 transition-colors text-xs"
+                    className="w-16 sm:w-20 h-8 bg-white/60 hover:bg-white/80 rounded-lg flex items-center justify-center gap-1 transition-colors text-xs"
                   >
                     <span>{language === 'en' ? '🇬🇧 EN' : language === 'fi' ? '🇫🇮 FI' : '🇸🇪 SV'}</span>
                     <ChevronDown className="w-3 h-3" />
@@ -129,22 +130,23 @@ export default function App() {
 
         {/* ── Top Header ── */}
         <header style={{ background: 'rgba(255,255,255,0.6)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.5)' }} className="sticky top-0 z-40">
-          <div className="max-w-lg mx-auto px-4 flex items-center justify-between h-14">
-            <div className="flex items-center gap-0.5">
+          <div className="max-w-lg mx-auto px-2 sm:px-4 flex flex-wrap items-center justify-between h-auto min-h-[3.5rem]">
+            <div className="flex items-center gap-0.5 min-w-0 flex-shrink-0">
               <img src={logo} alt="AirAware Logo" className="w-8 h-8 object-contain" />
-              <img src={logoText} alt="AirAware" className="h-6 object-contain" />
+              <img src={logoText} alt="AirAware" className="h-6 object-contain max-w-[110px] sm:max-w-none" />
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 flex-wrap justify-end flex-1 min-w-0">
               <button
                 onClick={() => setMode('clinician')}
-                className="text-[0.65rem] text-slate-400 hover:text-slate-600 flex items-center gap-1 transition-colors"
+                className="text-[0.65rem] text-slate-400 hover:text-slate-600 flex flex-col items-center gap-0.5 transition-colors whitespace-nowrap px-1"
               >
-                <Stethoscope className="w-3 h-3" /> Clinician
+                <div className="flex items-center gap-1"><Stethoscope className="w-3 h-3" /></div>
+                <span className="text-[0.65rem] leading-tight">Clinician View</span>
               </button>
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-                  className="w-20 h-8 bg-white/60 hover:bg-white/80 rounded-lg flex items-center justify-center gap-1 transition-colors text-xs"
+                  className="w-16 sm:w-20 h-8 bg-white/60 hover:bg-white/80 rounded-lg flex items-center justify-center gap-1 transition-colors text-xs"
                 >
                   <span>{language === 'en' ? '🇬🇧 EN' : language === 'fi' ? '🇫🇮 FI' : '🇸🇪 SV'}</span>
                   <ChevronDown className="w-3 h-3" />

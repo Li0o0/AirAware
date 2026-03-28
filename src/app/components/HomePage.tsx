@@ -370,10 +370,10 @@ export function HomePage() {
           <div>
             <h4 className="text-[#1E293B] text-[0.95rem] mb-1">What this means</h4>
             <p className="text-[0.85rem] text-slate-600 leading-relaxed">
-              Your COPD symptoms are showing signs of worsening. This doesn't mean anything is wrong with you—it's your lungs asking for a bit more support right now. Speaking with your doctor can help get you feeling better.
+              Your flare-up risk is increasing, which means your lungs may need some extra support right now. Recent changes in your blood oxygen levels, breathing rate and activity suggest that your respiratory health needs to be checked. The steady rise from Day 10 shows it's been building gradually. 
             </p>
             <p className="text-[0.85rem] text-slate-600 leading-relaxed mt-2">
-              The gradual increase from Day 10 onwards shows this has been building slowly. Early detection gives you the best chance to feel better quickly.
+              Follow your personal action plan (e.g. increase bronchodilator use or start prescribed medication) to prevent further symptom advancement and consider speaking to your healthcare professional. A summary has been shared with your nurse.
             </p>
           </div>
         </div>
