@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import logo from '../Logo/Logo_without_text 1.png';
+import logoText from '../Logo/Logo_text.png';
 import { BiologicalPulse } from './components/BiologicalPulse';
 import { HomePage } from './components/HomePage';
 import { TrendsPage } from './components/TrendsPage';
@@ -10,7 +12,7 @@ import { ClinicianDashboard } from './components/ClinicianDashboard';
 import { Activity, Home, TrendingUp, BookOpen, User, X, Settings, ChevronRight, CheckSquare, Stethoscope, ArrowLeft, ChevronDown } from 'lucide-react';
 
 type AppMode = 'patient' | 'clinician';
-type Language = 'en' | 'fi';
+type Language = 'en' | 'fi' | 'sv';
 
 const tabs: { id: TabId; label: string; icon: React.ElementType }[] = [
   { id: 'overview', label: 'Overview', icon: Home },
@@ -45,14 +47,9 @@ export default function App() {
         <div className="relative z-10 flex flex-col min-h-screen">
           <header style={{ background: 'rgba(255,255,255,0.6)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.5)' }} className="sticky top-0 z-40">
             <div className="max-w-lg mx-auto px-4 flex items-center justify-between h-14">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-lg flex items-center justify-center shadow-sm">
-                  <Stethoscope className="w-4.5 h-4.5 text-white" />
-                </div>
-                <div>
-                  <span className="text-[#1E293B] text-[0.95rem] tracking-wide">AirAware</span>
-                  <span className="text-[0.6rem] text-indigo-500 ml-1.5 px-1.5 py-0.5 rounded-full bg-indigo-50">Clinician</span>
-                </div>
+              <div className="flex items-center gap-1">
+                <img src={logo} alt="AirAware Logo" className="w-8 h-8 object-contain" />
+                <img src={logoText} alt="AirAware" className="h-6 object-contain" />
               </div>
               <div className="flex items-center gap-2">
                 <button
@@ -66,7 +63,7 @@ export default function App() {
                     onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
                     className="w-20 h-8 bg-white/60 hover:bg-white/80 rounded-lg flex items-center justify-center gap-1 transition-colors text-xs"
                   >
-                    <span>{language === 'en' ? '🇬🇧 EN' : '🇫🇮 FI'}</span>
+                    <span>{language === 'en' ? '🇬🇧 EN' : language === 'fi' ? '🇫🇮 FI' : '🇸🇪 SV'}</span>
                     <ChevronDown className="w-3 h-3" />
                   </button>
                   {showLanguageDropdown && (
@@ -92,6 +89,17 @@ export default function App() {
                         }`}
                       >
                         🇫🇮 FI
+                      </button>
+                      <button
+                        onClick={() => {
+                          setLanguage('sv');
+                          setShowLanguageDropdown(false);
+                        }}
+                        className={`w-full px-3 py-2 text-left text-xs hover:bg-gray-50 flex items-center gap-2 ${
+                          language === 'sv' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                        }`}
+                      >
+                        🇸🇪 SV
                       </button>
                     </div>
                   )}
@@ -123,10 +131,8 @@ export default function App() {
         <header style={{ background: 'rgba(255,255,255,0.6)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.5)' }} className="sticky top-0 z-40">
           <div className="max-w-lg mx-auto px-4 flex items-center justify-between h-14">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-lg flex items-center justify-center shadow-sm">
-                <Activity className="w-4.5 h-4.5 text-white" />
-              </div>
-              <span className="text-[#1E293B] text-[0.95rem] tracking-wide">AirAware</span>
+              <img src={logo} alt="AirAware Logo" className="w-8 h-8 object-contain" />
+              <img src={logoText} alt="AirAware" className="h-6 object-contain" />
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -140,7 +146,7 @@ export default function App() {
                   onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
                   className="w-20 h-8 bg-white/60 hover:bg-white/80 rounded-lg flex items-center justify-center gap-1 transition-colors text-xs"
                 >
-                  <span>{language === 'en' ? '🇬🇧 EN' : '🇫🇮 FI'}</span>
+                  <span>{language === 'en' ? '🇬🇧 EN' : language === 'fi' ? '🇫🇮 FI' : '🇸🇪 SV'}</span>
                   <ChevronDown className="w-3 h-3" />
                 </button>
                 {showLanguageDropdown && (
@@ -166,6 +172,17 @@ export default function App() {
                       }`}
                     >
                       🇫🇮 FI
+                    </button>
+                    <button
+                      onClick={() => {
+                        setLanguage('sv');
+                        setShowLanguageDropdown(false);
+                      }}
+                      className={`w-full px-3 py-2 text-left text-xs hover:bg-gray-50 flex items-center gap-2 ${
+                        language === 'sv' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                      }`}
+                    >
+                      🇸🇪 SV
                     </button>
                   </div>
                 )}
