@@ -48,8 +48,8 @@ export default function App() {
           <header style={{ background: 'rgba(255,255,255,0.6)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.5)' }} className="sticky top-0 z-40">
             <div className="max-w-lg mx-auto px-2 sm:px-4 flex flex-wrap items-center justify-between h-auto min-h-[3.5rem]">
               <div className="flex items-center gap-0.5 min-w-0 flex-shrink-0">
-                <img src={logo} alt="AirAware Logo" className="w-8 h-8 object-contain" />
-                <img src={logoText} alt="AirAware" className="h-6 object-contain max-w-[110px] sm:max-w-none" />
+                <img src={logo} alt="AirAware Logo" className="w-7 h-7 object-contain" />
+                <img src={logoText} alt="AirAware" className="h-5 object-contain max-w-[80px] sm:max-w-none" />
               </div>
               <div className="flex items-center gap-1.5 flex-wrap justify-end flex-1 min-w-0">
                 <button
@@ -132,8 +132,8 @@ export default function App() {
         <header style={{ background: 'rgba(255,255,255,0.6)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.5)' }} className="sticky top-0 z-40">
           <div className="max-w-lg mx-auto px-2 sm:px-4 flex flex-wrap items-center justify-between h-auto min-h-[3.5rem]">
             <div className="flex items-center gap-0.5 min-w-0 flex-shrink-0">
-              <img src={logo} alt="AirAware Logo" className="w-8 h-8 object-contain" />
-              <img src={logoText} alt="AirAware" className="h-6 object-contain max-w-[110px] sm:max-w-none" />
+              <img src={logo} alt="AirAware Logo" className="w-7 h-7 object-contain" />
+              <img src={logoText} alt="AirAware" className="h-5 object-contain max-w-[80px] sm:max-w-none" />
             </div>
             <div className="flex items-center gap-1.5 flex-wrap justify-end flex-1 min-w-0">
               <button
