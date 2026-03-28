@@ -21,13 +21,13 @@ const spirometryData = [
 ];
 
 const symptomScoreData = [
-  { day: 'Mon', breathlessness: 3, cough: 2, mucus: 2, confirmed: true },
-  { day: 'Tue', breathlessness: 4, cough: 3, mucus: 3, confirmed: false },
-  { day: 'Wed', breathlessness: 3, cough: 2, mucus: 2, confirmed: true },
-  { day: 'Thu', breathlessness: 3, cough: 2, mucus: 1, confirmed: false },
-  { day: 'Fri', breathlessness: 5, cough: 4, mucus: 3, confirmed: true },
+  { day: 'Mon', breathlessness: 3, cough: 2, mucus: 1.5, confirmed: true },
+  { day: 'Tue', breathlessness: 4, cough: 3, mucus: 2, confirmed: false },
+  { day: 'Wed', breathlessness: 3, cough: 2, mucus: 1, confirmed: true },
+  { day: 'Thu', breathlessness: 2, cough: 1, mucus: 0.5, confirmed: false },
+  { day: 'Fri', breathlessness: 3, cough: 2, mucus: 1, confirmed: true },
   { day: 'Sat', breathlessness: 4, cough: 3, mucus: 2, confirmed: true },
-  { day: 'Sun', breathlessness: 3, cough: 2, mucus: 2, confirmed: false },
+  { day: 'Sun', breathlessness: 4.5, cough: 4, mucus: 2.5, confirmed: false },
 ];
 
 const activityData = [

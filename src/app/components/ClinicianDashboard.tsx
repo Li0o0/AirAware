@@ -28,7 +28,6 @@ interface PatientData {
   gender: string;
   patientId: string;
   hasCOPD: boolean;
-  copdStage?: string;
   latestRisk: number;
   riskTrend: 'worsening' | 'stable' | 'improving';
   alertLevel: 'critical' | 'warning' | 'watch' | 'stable';
@@ -69,7 +68,7 @@ const generateRiskData = (pattern: 'worsening' | 'stable_high' | 'moderate_rise'
 const patients: PatientData[] = [
   {
     id: '1', name: 'Margaret Chen', initials: 'MC', age: 72, gender: 'Female',
-    patientId: '#PAT-2024-1847', hasCOPD: true, copdStage: 'GOLD Stage III',
+    patientId: '#PAT-2024-1847', hasCOPD: true,
     latestRisk: 82, riskTrend: 'worsening', alertLevel: 'critical',
     alertMessage: 'Rapid exacerbation detected — SpO₂ dropped below 90% twice this week',
     riskData: generateRiskData('worsening'),
@@ -78,7 +77,7 @@ const patients: PatientData[] = [
   },
   {
     id: '2', name: 'Robert Williams', initials: 'RW', age: 65, gender: 'Male',
-    patientId: '#PAT-2024-2156', hasCOPD: true, copdStage: 'GOLD Stage II',
+    patientId: '#PAT-2024-2156', hasCOPD: true,
     latestRisk: 61, riskTrend: 'worsening', alertLevel: 'warning',
     alertMessage: 'Steady symptom increase over 2 weeks — cough frequency +40%',
     riskData: generateRiskData('stable_high'),
@@ -87,7 +86,7 @@ const patients: PatientData[] = [
   },
   {
     id: '3', name: 'John Anderson', initials: 'JA', age: 67, gender: 'Male',
-    patientId: '#PAT-2024-2891', hasCOPD: true, copdStage: 'GOLD Stage II',
+    patientId: '#PAT-2024-2891', hasCOPD: true,
     latestRisk: 73, riskTrend: 'worsening', alertLevel: 'critical',
     alertMessage: 'Multiple indicators elevated — breathing pattern shift since Day 17',
     riskData: generateRiskData('worsening'),
@@ -105,7 +104,7 @@ const patients: PatientData[] = [
   },
   {
     id: '5', name: 'David Thompson', initials: 'DT', age: 74, gender: 'Male',
-    patientId: '#PAT-2024-1523', hasCOPD: true, copdStage: 'GOLD Stage I',
+    patientId: '#PAT-2024-1523', hasCOPD: true,
     latestRisk: 18, riskTrend: 'improving', alertLevel: 'stable',
     alertMessage: 'Condition improving — risk score down 35% this month',
     riskData: generateRiskData('improving'),
@@ -123,7 +122,7 @@ const patients: PatientData[] = [
   },
   {
     id: '7', name: 'James Mitchell', initials: 'JM', age: 70, gender: 'Male',
-    patientId: '#PAT-2024-1102', hasCOPD: true, copdStage: 'GOLD Stage II',
+    patientId: '#PAT-2024-1102', hasCOPD: true,
     latestRisk: 15, riskTrend: 'stable', alertLevel: 'stable',
     alertMessage: 'Stable — all vitals within normal baseline',
     riskData: generateRiskData('stable_low'),
@@ -189,9 +188,6 @@ function PatientRow({ patient, isExpanded, onToggle }: { patient: PatientData; i
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
             <span className="text-[#1E293B] text-[0.9rem] truncate">{patient.name}</span>
-            {patient.hasCOPD && patient.copdStage && (
-              <span className="text-[0.6rem] px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-500 shrink-0">{patient.copdStage}</span>
-            )}
             {!patient.hasCOPD && (
               <span className="text-[0.6rem] px-1.5 py-0.5 rounded-full bg-slate-50 text-slate-400 shrink-0">No COPD Dx</span>
             )}
