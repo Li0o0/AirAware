@@ -186,13 +186,13 @@ function PatientRow({ patient, isExpanded, onToggle }: { patient: PatientData; i
 
         {/* Info */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2">
-            <span className="text-[#1E293B] text-[0.9rem] truncate">{patient.name}</span>
+          <div className="text-[#1E293B] text-[0.9rem] truncate">{patient.name}</div>
+          <div className="flex items-center gap-2 mt-1">
+            <p className="text-[0.7rem] text-slate-400 truncate">{patient.patientId} · {patient.age} yrs · {patient.gender}</p>
             {!patient.hasCOPD && (
               <span className="text-[0.6rem] px-1.5 py-0.5 rounded-full bg-slate-50 text-slate-400 shrink-0">No COPD Dx</span>
             )}
           </div>
-          <p className="text-[0.7rem] text-slate-400 truncate">{patient.patientId} · {patient.age} yrs · {patient.gender}</p>
         </div>
 
         {/* Risk score pill */}

@@ -278,7 +278,7 @@ function SymptomChart() {
   return (
     <div>
       <ResponsiveContainer width="100%" height={260}>
-        <AreaChart data={symptomScoreData} margin={{ left: -8, right: 8, top: 0, bottom: 0 }}>
+        <AreaChart data={symptomScoreData} margin={{ left: -30, right: 8, top: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
           <XAxis dataKey="day" stroke="#9ca3af" tick={{ fontSize: 12 }} />
           <YAxis stroke="#9ca3af" domain={[0, 6]} tick={{ fontSize: 12 }} />
@@ -296,7 +296,7 @@ function SymptomChart() {
 function LungChart() {
   return (
     <ResponsiveContainer width="100%" height={260}>
-      <LineChart data={spirometryData} margin={{ left: -8, right: 8, top: 0, bottom: 0 }}>
+      <LineChart data={spirometryData} margin={{ left: -30, right: 8, top: 0, bottom: 0 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
         <XAxis dataKey="month" stroke="#9ca3af" tick={{ fontSize: 12 }} />
         <YAxis stroke="#9ca3af" domain={[60, 90]} tick={{ fontSize: 12 }} />
@@ -313,7 +313,7 @@ function LungChart() {
 function ActivityChart() {
   return (
     <ResponsiveContainer width="100%" height={260}>
-      <BarChart data={activityData} margin={{ left: -8, right: 8, top: 0, bottom: 0 }}>
+      <BarChart data={activityData} margin={{ left: -30, right: 8, top: 0, bottom: 0 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
         <XAxis dataKey="day" stroke="#9ca3af" tick={{ fontSize: 12 }} />
         <YAxis stroke="#9ca3af" tick={{ fontSize: 12 }} />

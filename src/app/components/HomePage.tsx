@@ -206,7 +206,7 @@ export function HomePage() {
         </div>
         
         <ResponsiveContainer width="100%" height={280}>
-          <LineChart data={riskProgressionData} margin={{ top: 10, right: 10, left: -10, bottom: 10 }}>
+          <LineChart data={riskProgressionData} margin={{ top: 10, right: 10, left: -30, bottom: 10 }}>
             <defs>
               <linearGradient id="riskGradient" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stopColor="#10b981" />
