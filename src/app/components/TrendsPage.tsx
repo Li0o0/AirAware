@@ -12,12 +12,12 @@ import {
 
 // ─── Mock Data ───
 const spirometryData = [
-  { month: 'Oct', fev1: 67, fvc: 79 },
+  { month: 'Oct', fev1: 72, fvc: 83 },
   { month: 'Nov', fev1: 65, fvc: 77 },
-  { month: 'Dec', fev1: 68, fvc: 80 },
-  { month: 'Jan', fev1: 69, fvc: 81 },
-  { month: 'Feb', fev1: 70, fvc: 82 },
-  { month: 'Mar', fev1: 71, fvc: 83 },
+  { month: 'Dec', fev1: 68, fvc: 75 },
+  { month: 'Jan', fev1: 66, fvc: 74 },
+  { month: 'Feb', fev1: 64, fvc: 72 },
+  { month: 'Mar', fev1: 51, fvc: 63 },
 ];
 
 const symptomScoreData = [
@@ -36,8 +36,8 @@ const activityData = [
   { day: 'Wed', steps: 3500, duration: 38 },
   { day: 'Thu', steps: 4500, duration: 58 },
   { day: 'Fri', steps: 3200, duration: 35 },
-  { day: 'Sat', steps: 5100, duration: 65 },
-  { day: 'Sun', steps: 4250, duration: 48 },
+  { day: 'Sat', steps: 1700, duration: 65 },
+  { day: 'Sun', steps: 1400, duration: 48 },
 ];
 
 const medicationAdherence = [
@@ -278,7 +278,7 @@ function SymptomChart() {
   return (
     <div>
       <ResponsiveContainer width="100%" height={260}>
-        <AreaChart data={symptomScoreData}>
+        <AreaChart data={symptomScoreData} margin={{ left: -8, right: 8, top: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
           <XAxis dataKey="day" stroke="#9ca3af" tick={{ fontSize: 12 }} />
           <YAxis stroke="#9ca3af" domain={[0, 6]} tick={{ fontSize: 12 }} />
@@ -296,7 +296,7 @@ function SymptomChart() {
 function LungChart() {
   return (
     <ResponsiveContainer width="100%" height={260}>
-      <LineChart data={spirometryData}>
+      <LineChart data={spirometryData} margin={{ left: -8, right: 8, top: 0, bottom: 0 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
         <XAxis dataKey="month" stroke="#9ca3af" tick={{ fontSize: 12 }} />
         <YAxis stroke="#9ca3af" domain={[60, 90]} tick={{ fontSize: 12 }} />
@@ -313,14 +313,13 @@ function LungChart() {
 function ActivityChart() {
   return (
     <ResponsiveContainer width="100%" height={260}>
-      <BarChart data={activityData}>
+      <BarChart data={activityData} margin={{ left: -8, right: 8, top: 0, bottom: 0 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
         <XAxis dataKey="day" stroke="#9ca3af" tick={{ fontSize: 12 }} />
         <YAxis stroke="#9ca3af" tick={{ fontSize: 12 }} />
         <Tooltip contentStyle={{ backgroundColor: 'white', border: '1px solid #e5e7eb', borderRadius: '12px', fontSize: 13 }} />
         <Legend wrapperStyle={{ fontSize: 12 }} />
         <Bar dataKey="steps" fill="#10b981" name="Steps" radius={[6, 6, 0, 0]} />
-        <Bar dataKey="duration" fill="#3b82f6" name="Duration (min)" radius={[6, 6, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );
