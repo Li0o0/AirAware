@@ -277,10 +277,6 @@ export function TrendsPage() {
 function SymptomChart() {
   return (
     <div>
-      <div className="flex items-center gap-2 mb-3 text-xs text-gray-500">
-        <div className="w-3 h-3 rounded-full bg-amber-400" />
-        <span>Amber dots = confirmed by you</span>
-      </div>
       <ResponsiveContainer width="100%" height={260}>
         <AreaChart data={symptomScoreData}>
           <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
@@ -288,7 +284,7 @@ function SymptomChart() {
           <YAxis stroke="#9ca3af" domain={[0, 6]} tick={{ fontSize: 12 }} />
           <Tooltip contentStyle={{ backgroundColor: 'white', border: '1px solid #e5e7eb', borderRadius: '12px', fontSize: 13 }} />
           <Legend wrapperStyle={{ fontSize: 12 }} />
-          <Area type="monotone" dataKey="breathlessness" stroke="#FB7185" fill="#FB7185" fillOpacity={0.12} strokeWidth={2} name="Breathlessness" dot={<ConfirmedDot />} />
+          <Area type="monotone" dataKey="breathlessness" stroke="#FB7185" fill="#FB7185" fillOpacity={0.12} strokeWidth={2} name="Breathlessness" />
           <Area type="monotone" dataKey="cough" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.10} strokeWidth={2} name="Cough" />
           <Area type="monotone" dataKey="mucus" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.10} strokeWidth={2} name="Mucus" />
         </AreaChart>
