@@ -9,7 +9,7 @@ import { GuidesPage } from './components/GuidesPage';
 import { PatientProfile } from './components/PatientProfile';
 import { HealthInsights } from './components/HealthInsights';
 import { ClinicianDashboard } from './components/ClinicianDashboard';
-import { Activity, Home, TrendingUp, BookOpen, User, X, Settings, ChevronRight, CheckSquare, Stethoscope, ArrowLeft, ChevronDown } from 'lucide-react';
+import { Activity, Home, TrendingUp, BookOpen, User, X, Settings, ChevronRight, CheckSquare, Stethoscope, ArrowLeft, ChevronDown, Globe } from 'lucide-react';
 
 type AppMode = 'patient' | 'clinician';
 type Language = 'en' | 'fi' | 'sv';
@@ -62,45 +62,49 @@ export default function App() {
                 <div className="relative" ref={dropdownRef}>
                   <button
                     onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-                    className="w-16 sm:w-20 h-8 bg-white/60 hover:bg-white/80 rounded-lg flex items-center justify-center gap-1 transition-colors text-xs"
+                    className="h-8 px-2 sm:px-3 bg-white/60 hover:bg-white/80 border border-slate-200/50 shadow-sm rounded-lg flex items-center justify-center gap-1.5 transition-colors text-xs text-slate-600"
                   >
-                    <span>{language === 'en' ? '🇬🇧 EN' : language === 'fi' ? '🇫🇮 FI' : '🇸🇪 SV'}</span>
-                    <ChevronDown className="w-3 h-3" />
+                    <Globe className="w-3.5 h-3.5 text-slate-500" />
+                    <span className="font-medium tracking-wide">{language.toUpperCase()}</span>
+                    <ChevronDown className="w-3 h-3 opacity-50" />
                   </button>
                   {showLanguageDropdown && (
-                    <div className="absolute top-full mt-1 right-0 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200 py-1 z-50 min-w-[80px]">
+                    <div className="absolute top-full mt-1 right-0 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-slate-200 py-1 z-50 min-w-[110px] overflow-hidden">
                       <button
                         onClick={() => {
                           setLanguage('en');
                           setShowLanguageDropdown(false);
                         }}
-                        className={`w-full px-3 py-2 text-left text-xs hover:bg-gray-50 flex items-center gap-2 ${
-                          language === 'en' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                        className={`w-full px-3 py-2 text-left text-xs transition-colors flex items-center justify-between ${
+                          language === 'en' ? 'bg-teal-50 text-teal-700 font-medium' : 'text-slate-600 hover:bg-slate-50'
                         }`}
                       >
-                        🇬🇧 EN
+                        English
+                        {language === 'en' && <span className="w-1.5 h-1.5 rounded-full bg-teal-500"></span>}
                       </button>
                       <button
                         onClick={() => {
                           setLanguage('fi');
                           setShowLanguageDropdown(false);
                         }}
-                        className={`w-full px-3 py-2 text-left text-xs hover:bg-gray-50 flex items-center gap-2 ${
-                          language === 'fi' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                        className={`w-full px-3 py-2 text-left text-xs transition-colors flex items-center justify-between ${
+                          language === 'fi' ? 'bg-teal-50 text-teal-700 font-medium' : 'text-slate-600 hover:bg-slate-50'
                         }`}
                       >
-                        🇫🇮 FI
+                        Suomi
+                        {language === 'fi' && <span className="w-1.5 h-1.5 rounded-full bg-teal-500"></span>}
                       </button>
                       <button
                         onClick={() => {
                           setLanguage('sv');
                           setShowLanguageDropdown(false);
                         }}
-                        className={`w-full px-3 py-2 text-left text-xs hover:bg-gray-50 flex items-center gap-2 ${
-                          language === 'sv' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                        className={`w-full px-3 py-2 text-left text-xs transition-colors flex items-center justify-between ${
+                          language === 'sv' ? 'bg-teal-50 text-teal-700 font-medium' : 'text-slate-600 hover:bg-slate-50'
                         }`}
                       >
-                        🇸🇪 SV
+                        Svenska
+                        {language === 'sv' && <span className="w-1.5 h-1.5 rounded-full bg-teal-500"></span>}
                       </button>
                     </div>
                   )}
@@ -146,45 +150,49 @@ export default function App() {
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-                  className="w-16 sm:w-20 h-8 bg-white/60 hover:bg-white/80 rounded-lg flex items-center justify-center gap-1 transition-colors text-xs"
+                  className="h-8 px-2 sm:px-3 bg-white/60 hover:bg-white/80 border border-slate-200/50 shadow-sm rounded-lg flex items-center justify-center gap-1.5 transition-colors text-xs text-slate-600"
                 >
-                  <span>{language === 'en' ? '🇬🇧 EN' : language === 'fi' ? '🇫🇮 FI' : '🇸🇪 SV'}</span>
-                  <ChevronDown className="w-3 h-3" />
+                  <Globe className="w-3.5 h-3.5 text-slate-500" />
+                  <span className="font-medium tracking-wide">{language.toUpperCase()}</span>
+                  <ChevronDown className="w-3 h-3 opacity-50" />
                 </button>
                 {showLanguageDropdown && (
-                  <div className="absolute top-full mt-1 right-0 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200 py-1 z-50 min-w-[80px]">
+                  <div className="absolute top-full mt-1 right-0 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-slate-200 py-1 z-50 min-w-[110px] overflow-hidden">
                     <button
                       onClick={() => {
                         setLanguage('en');
                         setShowLanguageDropdown(false);
                       }}
-                      className={`w-full px-3 py-2 text-left text-xs hover:bg-gray-50 flex items-center gap-2 ${
-                        language === 'en' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                      className={`w-full px-3 py-2 text-left text-xs transition-colors flex items-center justify-between ${
+                        language === 'en' ? 'bg-teal-50 text-teal-700 font-medium' : 'text-slate-600 hover:bg-slate-50'
                       }`}
                     >
-                      🇬🇧 EN
+                      English
+                      {language === 'en' && <span className="w-1.5 h-1.5 rounded-full bg-teal-500"></span>}
                     </button>
                     <button
                       onClick={() => {
                         setLanguage('fi');
                         setShowLanguageDropdown(false);
                       }}
-                      className={`w-full px-3 py-2 text-left text-xs hover:bg-gray-50 flex items-center gap-2 ${
-                        language === 'fi' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                      className={`w-full px-3 py-2 text-left text-xs transition-colors flex items-center justify-between ${
+                        language === 'fi' ? 'bg-teal-50 text-teal-700 font-medium' : 'text-slate-600 hover:bg-slate-50'
                       }`}
                     >
-                      🇫🇮 FI
+                      Suomi
+                      {language === 'fi' && <span className="w-1.5 h-1.5 rounded-full bg-teal-500"></span>}
                     </button>
                     <button
                       onClick={() => {
                         setLanguage('sv');
                         setShowLanguageDropdown(false);
                       }}
-                      className={`w-full px-3 py-2 text-left text-xs hover:bg-gray-50 flex items-center gap-2 ${
-                        language === 'sv' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                      className={`w-full px-3 py-2 text-left text-xs transition-colors flex items-center justify-between ${
+                        language === 'sv' ? 'bg-teal-50 text-teal-700 font-medium' : 'text-slate-600 hover:bg-slate-50'
                       }`}
                     >
-                      🇸🇪 SV
+                      Svenska
+                      {language === 'sv' && <span className="w-1.5 h-1.5 rounded-full bg-teal-500"></span>}
                     </button>
                   </div>
                 )}
