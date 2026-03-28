@@ -47,7 +47,7 @@ export default function App() {
         <div className="relative z-10 flex flex-col min-h-screen">
           <header style={{ background: 'rgba(255,255,255,0.6)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.5)' }} className="sticky top-0 z-40">
             <div className="max-w-lg mx-auto px-4 flex items-center justify-between h-14">
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-0.5">
                 <img src={logo} alt="AirAware Logo" className="w-8 h-8 object-contain" />
                 <img src={logoText} alt="AirAware" className="h-6 object-contain" />
               </div>
@@ -130,7 +130,7 @@ export default function App() {
         {/* ── Top Header ── */}
         <header style={{ background: 'rgba(255,255,255,0.6)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.5)' }} className="sticky top-0 z-40">
           <div className="max-w-lg mx-auto px-4 flex items-center justify-between h-14">
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-0.5">
               <img src={logo} alt="AirAware Logo" className="w-8 h-8 object-contain" />
               <img src={logoText} alt="AirAware" className="h-6 object-contain" />
             </div>
